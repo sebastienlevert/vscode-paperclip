@@ -1,4 +1,4 @@
-# Contributing to Paperclip
+# Contributing to Paperclipped
 
 Thank you for your interest in contributing! This guide covers everything you need to get started — from setting up the development environment to understanding the architecture and submitting pull requests.
 
@@ -47,7 +47,7 @@ Thank you for your interest in contributing! This guide covers everything you ne
 ```bash
 # Clone the repo
 git clone <repo-url>
-cd vscode-paperclip-office
+cd paperclipped
 
 # Install dependencies
 npm install
@@ -64,7 +64,7 @@ npm run watch
 1. Open the project in VS Code
 2. Press **F5** to launch the **Extension Development Host**
 3. In the new window, open a folder that's inside a OneDrive-synced directory
-4. Right-click a file → you should see the **Paperclip** submenu
+4. Right-click a file → you should see the **Paperclipped** submenu
 
 ### Quick iteration cycle
 
@@ -81,7 +81,7 @@ npm run watch
 ## Project Structure
 
 ```
-vscode-paperclip-office/
+paperclipped/
 ├── src/
 │   ├── extension.ts      # Entry point — activation, command registration
 │   ├── onedrive.ts        # OneDrive detection, registry queries, URL building
@@ -246,7 +246,7 @@ The extension uses a single VS Code context key:
 paperclip:isOneDriveWorkspace = true | false
 ```
 
-This controls the visibility of the `Paperclip` submenu in the explorer context menu. It's refreshed on activation and whenever workspace folders change.
+This controls the visibility of the `Paperclipped` submenu in the explorer context menu. It's refreshed on activation and whenever workspace folders change.
 
 ---
 
@@ -257,7 +257,7 @@ This controls the visibility of the `Paperclip` submenu in the explorer context 
    {
      "command": "paperclip.myCommand",
      "title": "My Command",
-     "category": "Paperclip",
+     "category": "Paperclipped",
      "icon": {
        "light": "resources/icons/my-icon.svg",
        "dark": "resources/icons/my-icon.svg"
@@ -336,7 +336,7 @@ npm run vscode:prepublish
 npx vsce package --allow-missing-repository
 
 # Install locally
-code --install-extension vscode-paperclip-office-*.vsix --force
+code --install-extension paperclipped-*.vsix --force
 ```
 
 ### Build system
@@ -358,7 +358,7 @@ Before submitting a PR, verify these scenarios:
 
 - [ ] **OneDrive detection**: Open a OneDrive folder — submenu appears
 - [ ] **Non-OneDrive folder**: Open a regular folder — submenu does NOT appear
-- [ ] **Share**: Right-click → Paperclip → Share… → native dialog opens
+- [ ] **Share**: Right-click → Paperclipped → Share… → native dialog opens
 - [ ] **Open in Word**: Right-click `.docx` → Open in Word → Word desktop opens
 - [ ] **Open in Excel**: Right-click `.xlsx` → Open in Excel → Excel desktop opens
 - [ ] **Open in PowerPoint**: Right-click `.pptx` → Open in PowerPoint → PowerPoint desktop opens
@@ -389,7 +389,7 @@ test/
 ### VS Code Developer Tools
 
 1. In the Extension Development Host: **Help** → **Toggle Developer Tools**
-2. Check the **Console** tab for `[Paperclip]` messages
+2. Check the **Console** tab for `[Paperclipped]` messages
 3. PowerShell errors and fallback triggers are logged here
 
 ### Breakpoints

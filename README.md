@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/sebastienlevert/vscode-paperclip-office/main/paperclip.png" alt="Paperclip" width="128" />
+  <img src="https://raw.githubusercontent.com/sebastienlevert/paperclipped/main/paperclip.png" alt="Paperclipped" width="128" />
 </p>
 
-# Paperclip
+# Paperclipped
 
 A better integration for VS Code and productivity documents— share files, open on the web, open in Word, Excel, PowerPoint, and preview Office documents without leaving your editor.
 
@@ -40,7 +40,7 @@ A better integration for VS Code and productivity documents— share files, open
 
 ### 📤 Share via OneDrive
 
-Right-click any file in a OneDrive-synced folder → **Paperclip** → **Share…** to open the native Windows OneDrive sharing dialog — the same dialog you see in File Explorer.
+Right-click any file in a OneDrive-synced folder → **Paperclipped** → **Share…** to open the native Windows OneDrive sharing dialog — the same dialog you see in File Explorer.
 
 ### 📄 Open in Office Desktop Apps
 
@@ -56,7 +56,7 @@ The extension resolves the Office executable from the Windows registry (`App Pat
 
 ### 🌐 Open on Web
 
-Right-click any file → **Paperclip** → **Open on Web** to view or edit the file in your browser via SharePoint / OneDrive for Business web. Works for all file types, not just Office documents.
+Right-click any file → **Paperclipped** → **Open on Web** to view or edit the file in your browser via SharePoint / OneDrive for Business web. Works for all file types, not just Office documents.
 
 ### 🔎 Office Document Preview
 
@@ -76,20 +76,20 @@ Double-click an Office file (`.docx`, `.xlsx`, `.pptx`, etc.) to open an in-edit
 
 ```bash
 # Build and package
-cd vscode-paperclip-office
+cd paperclipped
 npm install
 npm run compile
 npx vsce package --allow-missing-repository
 
 # Install
-code --install-extension vscode-paperclip-office-0.1.0.vsix --force
+code --install-extension paperclipped-0.1.0.vsix --force
 ```
 
 ### From source (development)
 
 ```bash
 git clone <repo-url>
-cd vscode-paperclip-office
+cd paperclipped
 ```
 
 ---
@@ -100,7 +100,7 @@ cd vscode-paperclip-office
 
 1. Open a folder that lives inside a OneDrive-synced directory.
 2. In the **Explorer** panel, right-click any file.
-3. Select **Paperclip** → **Share…**
+3. Select **Paperclipped** → **Share…**
 4. The native Windows OneDrive sharing dialog opens — pick recipients and permissions as usual.
 
 If the OneDrive share verb is unavailable (e.g., OneDrive is not running), the extension falls back to opening File Explorer with the file selected so you can share from there.
@@ -108,7 +108,7 @@ If the OneDrive share verb is unavailable (e.g., OneDrive is not running), the e
 ### Opening in Office desktop apps
 
 1. Right-click a Word, Excel, or PowerPoint file in the Explorer.
-2. Choose **Paperclip** → **Open in Word** / **Open in Excel** / **Open in PowerPoint**.
+2. Choose **Paperclipped** → **Open in Word** / **Open in Excel** / **Open in PowerPoint**.
 3. The file opens in the desktop application.
 
 The extension looks up the app path from the Windows registry:
@@ -124,7 +124,7 @@ If the registry key is not found, it falls back to `Start-Process` on the file, 
 ### Opening on the web
 
 1. Right-click any file in the Explorer (not just Office files).
-2. Choose **Paperclip** → **Open on Web**.
+2. Choose **Paperclipped** → **Open on Web**.
 3. Your default browser opens the file on SharePoint / OneDrive web.
 
 The extension builds a SharePoint `Doc.aspx` URL from the registry-stored web endpoint. If the endpoint is unavailable, it falls back to the shell "View online" verb.
@@ -219,7 +219,7 @@ When you right-click a file in a OneDrive workspace:
 ```
   ┌─────────────────────────┐
   │ …                       │
-  │ Paperclip           ▸   │──┐
+  │ Paperclipped           ▸   │──┐
   │ …                       │  │  ┌───────────────────────────┐
   └─────────────────────────┘  └──│ 📤 Share…                │
                                   │───────────────────────────│
@@ -231,7 +231,7 @@ When you right-click a file in a OneDrive workspace:
                                   └───────────────────────────┘
 ```
 
-The **Paperclip** submenu only appears when:
+The **Paperclipped** submenu only appears when:
 - The workspace folder is inside a OneDrive-synced directory
 - The right-clicked item is a file (not a folder)
 
@@ -241,7 +241,7 @@ Office-specific entries (Open in Word/Excel/PowerPoint) are conditionally shown 
 
 ## Commands
 
-All commands are under the `Paperclip` category and available in the Command Palette (`Ctrl+Shift+P`):
+All commands are under the `Paperclipped` category and available in the Command Palette (`Ctrl+Shift+P`):
 
 | Command | ID | Description |
 |---------|----|-------------|

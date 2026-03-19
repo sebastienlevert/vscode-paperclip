@@ -1,6 +1,6 @@
 {
-  "name": "vscode-paperclip-office",
-  "displayName": "Paperclip",
+  "name": "paperclipped",
+  "displayName": "Paperclipped",
   "description": "A better integration for VS Code and productivity documents — share files, open in Word, Excel, PowerPoint, preview Office docs, and open on the web",
   "version": "1.0.0",
   "publisher": "sebastienlevert",
@@ -8,7 +8,7 @@
   "icon": "paperclip.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sebastienlevert/vscode-paperclip-office.git"
+    "url": "https://github.com/sebastienlevert/paperclipped.git"
   },
   "engines": {
     "vscode": "^1.85.0"
@@ -17,7 +17,7 @@
     "Other"
   ],
   "keywords": [
-    "Paperclip",
+    "Paperclipped",
     "sharing",
     "office",
     "word",
@@ -36,7 +36,7 @@
       {
         "command": "paperclip.share",
         "title": "Share...",
-        "category": "Paperclip",
+        "category": "Paperclipped",
         "icon": {
           "light": "resources/icons/share.svg",
           "dark": "resources/icons/share.svg"
@@ -45,7 +45,7 @@
       {
         "command": "paperclip.openInWord",
         "title": "Open in Word",
-        "category": "Paperclip",
+        "category": "Paperclipped",
         "icon": {
           "light": "resources/icons/word.svg",
           "dark": "resources/icons/word.svg"
@@ -54,7 +54,7 @@
       {
         "command": "paperclip.openInExcel",
         "title": "Open in Excel",
-        "category": "Paperclip",
+        "category": "Paperclipped",
         "icon": {
           "light": "resources/icons/excel.svg",
           "dark": "resources/icons/excel.svg"
@@ -63,7 +63,7 @@
       {
         "command": "paperclip.openInPowerPoint",
         "title": "Open in PowerPoint",
-        "category": "Paperclip",
+        "category": "Paperclipped",
         "icon": {
           "light": "resources/icons/powerpoint.svg",
           "dark": "resources/icons/powerpoint.svg"
@@ -72,7 +72,7 @@
       {
         "command": "paperclip.openOnWeb",
         "title": "Open on Web",
-        "category": "Paperclip",
+        "category": "Paperclipped",
         "icon": {
           "light": "resources/icons/web.svg",
           "dark": "resources/icons/web.svg"
@@ -82,7 +82,7 @@
     "submenus": [
       {
         "id": "paperclip.menu",
-        "label": "Paperclip"
+        "label": "Paperclipped"
       }
     ],
     "menus": {
@@ -129,7 +129,7 @@
     "customEditors": [
       {
         "viewType": "paperclip.officePreview",
-        "displayName": "Office Document Preview (Paperclip)",
+        "displayName": "Office Document Preview (Paperclipped)",
         "selector": [
           {
             "filenamePattern": "*.doc"
