@@ -2,7 +2,7 @@
   "name": "vscode-paperclip",
   "displayName": "Paperclip",
   "description": "A better integration for VS Code and productivity documents — share files, open in Word, Excel, PowerPoint, preview Office docs, and open on the web",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "publisher": "sebastienlevert",
   "license": "MIT",
   "icon": "paperclip.png",
