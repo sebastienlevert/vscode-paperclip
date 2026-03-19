@@ -34,7 +34,7 @@
   "contributes": {
     "commands": [
       {
-        "command": "paperclip.share",
+        "command": "paperclipped.share",
         "title": "Share...",
         "category": "Paperclipped",
         "icon": {
@@ -43,7 +43,7 @@
         }
       },
       {
-        "command": "paperclip.openInWord",
+        "command": "paperclipped.openInWord",
         "title": "Open in Word",
         "category": "Paperclipped",
         "icon": {
@@ -52,7 +52,7 @@
         }
       },
       {
-        "command": "paperclip.openInExcel",
+        "command": "paperclipped.openInExcel",
         "title": "Open in Excel",
         "category": "Paperclipped",
         "icon": {
@@ -61,7 +61,7 @@
         }
       },
       {
-        "command": "paperclip.openInPowerPoint",
+        "command": "paperclipped.openInPowerPoint",
         "title": "Open in PowerPoint",
         "category": "Paperclipped",
         "icon": {
@@ -70,7 +70,7 @@
         }
       },
       {
-        "command": "paperclip.openOnWeb",
+        "command": "paperclipped.openOnWeb",
         "title": "Open on Web",
         "category": "Paperclipped",
         "icon": {
@@ -81,128 +81,102 @@
     ],
     "submenus": [
       {
-        "id": "paperclip.menu",
+        "id": "paperclipped.menu",
         "label": "Paperclipped"
       }
     ],
     "menus": {
       "explorer/context": [
         {
-          "submenu": "paperclip.menu",
-          "when": "paperclip:isOneDriveWorkspace && !explorerResourceIsFolder",
+          "submenu": "paperclipped.menu",
+          "when": "paperclipped:isOneDriveWorkspace && !explorerResourceIsFolder",
           "group": "navigation@100"
         }
       ],
       "editor/title/context": [
         {
-          "submenu": "paperclip.menu",
-          "when": "paperclip:isOneDriveWorkspace",
+          "submenu": "paperclipped.menu",
+          "when": "paperclipped:isOneDriveWorkspace",
           "group": "navigation@100"
         }
       ],
-      "paperclip.menu": [
+      "paperclipped.menu": [
         {
-          "command": "paperclip.share",
+          "command": "paperclipped.share",
           "group": "1_share"
         },
         {
-          "command": "paperclip.openInWord",
+          "command": "paperclipped.openInWord",
           "when": "resourceExtname == .doc || resourceExtname == .docx || resourceExtname == .docm || resourceExtname == .dot || resourceExtname == .dotx || resourceExtname == .dotm || resourceExtname == .rtf",
           "group": "2_openApp"
         },
         {
-          "command": "paperclip.openInExcel",
+          "command": "paperclipped.openInExcel",
           "when": "resourceExtname == .xls || resourceExtname == .xlsx || resourceExtname == .xlsm || resourceExtname == .xlsb || resourceExtname == .xlt || resourceExtname == .xltx || resourceExtname == .xltm || resourceExtname == .csv",
           "group": "2_openApp"
         },
         {
-          "command": "paperclip.openInPowerPoint",
+          "command": "paperclipped.openInPowerPoint",
           "when": "resourceExtname == .ppt || resourceExtname == .pptx || resourceExtname == .pptm || resourceExtname == .pot || resourceExtname == .potx || resourceExtname == .potm || resourceExtname == .ppsx || resourceExtname == .ppsm || resourceExtname == .pps",
           "group": "2_openApp"
         },
         {
-          "command": "paperclip.openOnWeb",
+          "command": "paperclipped.openOnWeb",
           "group": "3_web"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "paperclipped.share",
+          "when": "paperclipped:isOneDriveWorkspace"
+        },
+        {
+          "command": "paperclipped.openInWord",
+          "when": "paperclipped:isOneDriveWorkspace"
+        },
+        {
+          "command": "paperclipped.openInExcel",
+          "when": "paperclipped:isOneDriveWorkspace"
+        },
+        {
+          "command": "paperclipped.openInPowerPoint",
+          "when": "paperclipped:isOneDriveWorkspace"
+        },
+        {
+          "command": "paperclipped.openOnWeb",
+          "when": "paperclipped:isOneDriveWorkspace"
         }
       ]
     },
     "customEditors": [
       {
-        "viewType": "paperclip.officePreview",
+        "viewType": "paperclipped.officePreview",
         "displayName": "Office Document Preview (Paperclipped)",
         "selector": [
-          {
-            "filenamePattern": "*.doc"
-          },
-          {
-            "filenamePattern": "*.docx"
-          },
-          {
-            "filenamePattern": "*.docm"
-          },
-          {
-            "filenamePattern": "*.dot"
-          },
-          {
-            "filenamePattern": "*.dotx"
-          },
-          {
-            "filenamePattern": "*.dotm"
-          },
-          {
-            "filenamePattern": "*.rtf"
-          },
-          {
-            "filenamePattern": "*.xls"
-          },
-          {
-            "filenamePattern": "*.xlsx"
-          },
-          {
-            "filenamePattern": "*.xlsm"
-          },
-          {
-            "filenamePattern": "*.xlsb"
-          },
-          {
-            "filenamePattern": "*.xlt"
-          },
-          {
-            "filenamePattern": "*.xltx"
-          },
-          {
-            "filenamePattern": "*.xltm"
-          },
-          {
-            "filenamePattern": "*.ppt"
-          },
-          {
-            "filenamePattern": "*.pptx"
-          },
-          {
-            "filenamePattern": "*.pptm"
-          },
-          {
-            "filenamePattern": "*.pot"
-          },
-          {
-            "filenamePattern": "*.potx"
-          },
-          {
-            "filenamePattern": "*.potm"
-          },
-          {
-            "filenamePattern": "*.ppsx"
-          },
-          {
-            "filenamePattern": "*.ppsm"
-          },
-          {
-            "filenamePattern": "*.pps"
-          },
-          {
-            "filenamePattern": "*.pdf"
-          }
+          { "filenamePattern": "*.doc" },
+          { "filenamePattern": "*.docx" },
+          { "filenamePattern": "*.docm" },
+          { "filenamePattern": "*.dot" },
+          { "filenamePattern": "*.dotx" },
+          { "filenamePattern": "*.dotm" },
+          { "filenamePattern": "*.rtf" },
+          { "filenamePattern": "*.xls" },
+          { "filenamePattern": "*.xlsx" },
+          { "filenamePattern": "*.xlsm" },
+          { "filenamePattern": "*.xlsb" },
+          { "filenamePattern": "*.xlt" },
+          { "filenamePattern": "*.xltx" },
+          { "filenamePattern": "*.xltm" },
+          { "filenamePattern": "*.ppt" },
+          { "filenamePattern": "*.pptx" },
+          { "filenamePattern": "*.pptm" },
+          { "filenamePattern": "*.pot" },
+          { "filenamePattern": "*.potx" },
+          { "filenamePattern": "*.potm" },
+          { "filenamePattern": "*.ppsx" },
+          { "filenamePattern": "*.ppsm" },
+          { "filenamePattern": "*.pps" },
+          { "filenamePattern": "*.pdf" }
         ],
         "priority": "default"
       }
