@@ -129,7 +129,8 @@ export async function enrichAccountsFromRegistry(
         (a) => a.localPath.toLowerCase() === userFolder.toLowerCase()
       );
       if (match) {
-        match.webEndpoint = serviceUri;
+        // Strip the /_api suffix so we get a clean base URL
+        match.webEndpoint = serviceUri.replace(/\/_api\/?$/, "/");
       }
     }
   } catch {
@@ -157,8 +158,7 @@ export function buildWebUrl(
     ? account.webEndpoint
     : account.webEndpoint + "/";
 
-  // SharePoint "Doc.aspx" URL pattern — works for both Office and non-Office files
-  return `${base}_layouts/15/Doc.aspx?sourcedoc=${encodeURIComponent("/Documents/" + relativePath)}&action=default`;
+  return `${base}Documents/${relativePath}?web=1`;
 }
 
 /** Run a PowerShell snippet and return stdout. */

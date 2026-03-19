@@ -35,7 +35,7 @@
     "commands": [
       {
         "command": "paperclipped.share",
-        "title": "Share...",
+        "title": "Share",
         "category": "Paperclipped",
         "icon": {
           "light": "resources/icons/share.svg",
@@ -132,15 +132,15 @@
         },
         {
           "command": "paperclipped.openInWord",
-          "when": "paperclipped:isOneDriveWorkspace"
+          "when": "paperclipped:isOneDriveWorkspace && resourceExtname =~ /^\\.(doc|docx|docm|dot|dotx|dotm|rtf)$/i"
         },
         {
           "command": "paperclipped.openInExcel",
-          "when": "paperclipped:isOneDriveWorkspace"
+          "when": "paperclipped:isOneDriveWorkspace && resourceExtname =~ /^\\.(xls|xlsx|xlsm|xlsb|xlt|xltx|xltm|csv)$/i"
         },
         {
           "command": "paperclipped.openInPowerPoint",
-          "when": "paperclipped:isOneDriveWorkspace"
+          "when": "paperclipped:isOneDriveWorkspace && resourceExtname =~ /^\\.(ppt|pptx|pptm|pot|potx|potm|ppsx|ppsm|pps)$/i"
         },
         {
           "command": "paperclipped.openOnWeb",
@@ -153,30 +153,78 @@
         "viewType": "paperclipped.officePreview",
         "displayName": "Office Document Preview (Paperclipped)",
         "selector": [
-          { "filenamePattern": "*.doc" },
-          { "filenamePattern": "*.docx" },
-          { "filenamePattern": "*.docm" },
-          { "filenamePattern": "*.dot" },
-          { "filenamePattern": "*.dotx" },
-          { "filenamePattern": "*.dotm" },
-          { "filenamePattern": "*.rtf" },
-          { "filenamePattern": "*.xls" },
-          { "filenamePattern": "*.xlsx" },
-          { "filenamePattern": "*.xlsm" },
-          { "filenamePattern": "*.xlsb" },
-          { "filenamePattern": "*.xlt" },
-          { "filenamePattern": "*.xltx" },
-          { "filenamePattern": "*.xltm" },
-          { "filenamePattern": "*.ppt" },
-          { "filenamePattern": "*.pptx" },
-          { "filenamePattern": "*.pptm" },
-          { "filenamePattern": "*.pot" },
-          { "filenamePattern": "*.potx" },
-          { "filenamePattern": "*.potm" },
-          { "filenamePattern": "*.ppsx" },
-          { "filenamePattern": "*.ppsm" },
-          { "filenamePattern": "*.pps" },
-          { "filenamePattern": "*.pdf" }
+          {
+            "filenamePattern": "*.doc"
+          },
+          {
+            "filenamePattern": "*.docx"
+          },
+          {
+            "filenamePattern": "*.docm"
+          },
+          {
+            "filenamePattern": "*.dot"
+          },
+          {
+            "filenamePattern": "*.dotx"
+          },
+          {
+            "filenamePattern": "*.dotm"
+          },
+          {
+            "filenamePattern": "*.rtf"
+          },
+          {
+            "filenamePattern": "*.xls"
+          },
+          {
+            "filenamePattern": "*.xlsx"
+          },
+          {
+            "filenamePattern": "*.xlsm"
+          },
+          {
+            "filenamePattern": "*.xlsb"
+          },
+          {
+            "filenamePattern": "*.xlt"
+          },
+          {
+            "filenamePattern": "*.xltx"
+          },
+          {
+            "filenamePattern": "*.xltm"
+          },
+          {
+            "filenamePattern": "*.ppt"
+          },
+          {
+            "filenamePattern": "*.pptx"
+          },
+          {
+            "filenamePattern": "*.pptm"
+          },
+          {
+            "filenamePattern": "*.pot"
+          },
+          {
+            "filenamePattern": "*.potx"
+          },
+          {
+            "filenamePattern": "*.potm"
+          },
+          {
+            "filenamePattern": "*.ppsx"
+          },
+          {
+            "filenamePattern": "*.ppsm"
+          },
+          {
+            "filenamePattern": "*.pps"
+          },
+          {
+            "filenamePattern": "*.pdf"
+          }
         ],
         "priority": "default"
       }

@@ -101,7 +101,7 @@ export async function openInOfficeApp(
       $appPath = (Get-ItemProperty $regPath -ErrorAction SilentlyContinue).'(default)'
     }
     if ($appPath -and (Test-Path $appPath)) {
-      Start-Process -FilePath $appPath -ArgumentList '${escaped}'
+      Start-Process -FilePath $appPath -ArgumentList ('"' + '${escaped}' + '"')
       Write-Output 'OK'
     } else {
       Start-Process -FilePath '${escaped}'
