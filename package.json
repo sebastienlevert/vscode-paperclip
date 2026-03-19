@@ -87,6 +87,11 @@
         "command": "paperclipped.versionHistory",
         "title": "Version History",
         "category": "Paperclipped"
+      },
+      {
+        "command": "paperclipped.recentFiles",
+        "title": "Recent Files",
+        "category": "Paperclipped"
       }
     ],
     "submenus": [
@@ -175,6 +180,10 @@
         },
         {
           "command": "paperclipped.versionHistory",
+          "when": "paperclipped:isOneDriveWorkspace"
+        },
+        {
+          "command": "paperclipped.recentFiles",
           "when": "paperclipped:isOneDriveWorkspace"
         }
       ]

@@ -8,6 +8,7 @@ import {
 import { shareFile, openInOfficeApp, openOnWeb, openFolderOnWeb, openVersionHistory } from "./sharing";
 import { OfficePreviewProvider } from "./preview";
 import { SyncStatusDecorationProvider } from "./sync-decorations";
+import { showRecentFiles } from "./recent-files";
 
 export function activate(context: vscode.ExtensionContext): void {
   if (process.platform !== "win32") {
@@ -128,6 +129,13 @@ export function activate(context: vscode.ExtensionContext): void {
         }
         await openVersionHistory(filePath);
       }
+    ),
+
+    vscode.commands.registerCommand(
+      "paperclipped.recentFiles",
+      async () => {
+        await showRecentFiles();
+      }
     )
   );
 
@@ -179,6 +187,7 @@ export function activate(context: vscode.ExtensionContext): void {
         { label: "$(folder) Open Folder on Web", description: "Open parent folder in browser" },
         { label: "$(share) Share", description: "Open sharing dialog" },
         { label: "$(history) Version History", description: "View version history" },
+        { label: "$(clock) Recent Files", description: "Browse recent OneDrive files" },
       ];
 
       const pick = await vscode.window.showQuickPick(items, {
@@ -195,6 +204,7 @@ export function activate(context: vscode.ExtensionContext): void {
         "$(folder) Open Folder on Web": "paperclipped.openFolderOnWeb",
         "$(share) Share": "paperclipped.share",
         "$(history) Version History": "paperclipped.versionHistory",
+        "$(clock) Recent Files": "paperclipped.recentFiles",
       };
 
       const cmd = commandMap[pick.label];
