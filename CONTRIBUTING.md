@@ -47,7 +47,7 @@ Thank you for your interest in contributing! This guide covers everything you ne
 ```bash
 # Clone the repo
 git clone <repo-url>
-cd vscode-paperclip
+cd vscode-paperclip-office
 
 # Install dependencies
 npm install
@@ -81,7 +81,7 @@ npm run watch
 ## Project Structure
 
 ```
-vscode-paperclip/
+vscode-paperclip-office/
 ├── src/
 │   ├── extension.ts      # Entry point — activation, command registration
 │   ├── onedrive.ts        # OneDrive detection, registry queries, URL building
@@ -336,7 +336,7 @@ npm run vscode:prepublish
 npx vsce package --allow-missing-repository
 
 # Install locally
-code --install-extension vscode-paperclip-*.vsix --force
+code --install-extension vscode-paperclip-office-*.vsix --force
 ```
 
 ### Build system

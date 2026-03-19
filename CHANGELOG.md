@@ -5,4 +5,4 @@
 
 ### Bug Fixes
 
-* recover source files, add icon and repository URL ([2638d90](https://github.com/sebastienlevert/vscode-paperclip/commit/2638d900517e75a4774d9ba77b1d76f4235e78ab))
+* recover source files, add icon and repository URL ([2638d90](https://github.com/sebastienlevert/vscode-paperclip-office/commit/2638d900517e75a4774d9ba77b1d76f4235e78ab))

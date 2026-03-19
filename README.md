@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/sebastienlevert/vscode-paperclip/main/paperclip.png" alt="Paperclip" width="128" />
+  <img src="https://raw.githubusercontent.com/sebastienlevert/vscode-paperclip-office/main/paperclip.png" alt="Paperclip" width="128" />
 </p>
 
 # Paperclip
@@ -76,22 +76,20 @@ Double-click an Office file (`.docx`, `.xlsx`, `.pptx`, etc.) to open an in-edit
 
 ```bash
 # Build and package
-cd vscode-paperclip
+cd vscode-paperclip-office
 npm install
 npm run compile
 npx vsce package --allow-missing-repository
 
 # Install
-code --install-extension vscode-paperclip-0.1.0.vsix --force
+code --install-extension vscode-paperclip-office-0.1.0.vsix --force
 ```
 
 ### From source (development)
 
 ```bash
 git clone <repo-url>
-cd vscode-paperclip
-npm install
-# Press F5 in VS Code to launch Extension Development Host
+cd vscode-paperclip-office
 ```
 
 ---

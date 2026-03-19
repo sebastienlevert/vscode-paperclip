@@ -1,5 +1,5 @@
 {
-  "name": "vscode-paperclip",
+  "name": "vscode-paperclip-office",
   "displayName": "Paperclip",
   "description": "A better integration for VS Code and productivity documents — share files, open in Word, Excel, PowerPoint, preview Office docs, and open on the web",
   "version": "1.0.0",
@@ -8,7 +8,7 @@
   "icon": "paperclip.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sebastienlevert/vscode-paperclip.git"
+    "url": "https://github.com/sebastienlevert/vscode-paperclip-office.git"
   },
   "engines": {
     "vscode": "^1.85.0"
