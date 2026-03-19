@@ -14,14 +14,15 @@ async function isMarkMyWordInstalled(): Promise<boolean> {
 }
 
 /**
- * Install the MarkMyWord CLI as a .NET global tool via the integrated terminal.
- * Returns true if the install command completed successfully.
+ * Install or update the MarkMyWord CLI as a .NET global tool via the integrated terminal.
+ * Returns true if the install/update command completed successfully.
  */
-async function installMarkMyWord(): Promise<boolean> {
+async function installOrUpdateMarkMyWord(isUpdate: boolean): Promise<boolean> {
   const terminal = vscode.window.createTerminal("Paperclipped");
   terminal.show();
+  const action = isUpdate ? "update" : "install";
   terminal.sendText(
-    "dotnet tool install -g specworks.markmyword.cli && echo PAPERCLIPPED_INSTALL_OK"
+    `dotnet tool ${action} -g specworks.markmyword.cli`
   );
 
   // Wait for the terminal to finish by polling for the CLI
@@ -74,7 +75,7 @@ export async function exportToWord(filePath: string): Promise<void> {
     return;
   }
 
-  // Check if MarkMyWord is installed — auto-install if needed
+  // Check if MarkMyWord is installed — auto-install if needed, or update to latest
   let installed = await isMarkMyWordInstalled();
   if (!installed) {
     const install = await vscode.window.showInformationMessage(
@@ -93,7 +94,7 @@ export async function exportToWord(filePath: string): Promise<void> {
         cancellable: false,
       },
       async () => {
-        return installMarkMyWord();
+        return installOrUpdateMarkMyWord(false);
       }
     );
 
@@ -111,6 +112,14 @@ export async function exportToWord(filePath: string): Promise<void> {
       );
       return;
     }
+  } else {
+    // Already installed — silently update to latest in the background
+    execFile(
+      "dotnet",
+      ["tool", "update", "-g", "specworks.markmyword.cli"],
+      { timeout: 60000 },
+      () => { /* fire-and-forget */ }
+    );
   }
 
   // Build output path
