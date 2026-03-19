@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "publisher": "sebastienlevert",
   "license": "MIT",
-  "icon": "paperclip.png",
+  "icon": "paperclipped.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/sebastienlevert/paperclipped.git"

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/sebastienlevert/paperclipped/main/paperclip.png" alt="Paperclipped" width="128" />
+  <img src="https://raw.githubusercontent.com/sebastienlevert/paperclipped/main/paperclipped.png" alt="Paperclipped" width="128" />
 </p>
 
 # Paperclipped
