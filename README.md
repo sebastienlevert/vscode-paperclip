@@ -161,7 +161,7 @@ On activation, the extension discovers OneDrive root folders using two strategie
 
 Business accounts are identified by the presence of ` - ` in the folder name. Results are cached for the lifetime of the VS Code window.
 
-When any workspace folder falls inside a discovered OneDrive root, the extension sets the context key `paperclip:isOneDriveWorkspace` to `true`, which activates the context menu contributions.
+When any workspace folder falls inside a discovered OneDrive root, the extension sets the context key `paperclipped:isOneDriveWorkspace` to `true`, which activates the context menu contributions.
 
 ### Share dialog
 
@@ -245,11 +245,11 @@ All commands are under the `Paperclipped` category and available in the Command 
 
 | Command | ID | Description |
 |---------|----|-------------|
-| **Share…** | `paperclip.share` | Open native OneDrive sharing dialog |
-| **Open in Word** | `paperclip.openInWord` | Open `.doc`/`.docx`/`.docm` in Word desktop |
-| **Open in Excel** | `paperclip.openInExcel` | Open `.xls`/`.xlsx`/`.xlsm`/`.csv` in Excel desktop |
-| **Open in PowerPoint** | `paperclip.openInPowerPoint` | Open `.ppt`/`.pptx`/`.pptm` in PowerPoint desktop |
-| **Open on Web** | `paperclip.openOnWeb` | Open file in browser via SharePoint/OneDrive web |
+| **Share…** | `paperclipped.share` | Open native OneDrive sharing dialog |
+| **Open in Word** | `paperclipped.openInWord` | Open `.doc`/`.docx`/`.docm` in Word desktop |
+| **Open in Excel** | `paperclipped.openInExcel` | Open `.xls`/`.xlsx`/`.xlsm`/`.csv` in Excel desktop |
+| **Open in PowerPoint** | `paperclipped.openInPowerPoint` | Open `.ppt`/`.pptx`/`.pptm` in PowerPoint desktop |
+| **Open on Web** | `paperclipped.openOnWeb` | Open file in browser via SharePoint/OneDrive web |
 
 ---
 

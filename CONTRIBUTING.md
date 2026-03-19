@@ -130,7 +130,7 @@ extension.ts: activate()
 #### `extension.ts` — Orchestrator
 
 - Activation gate (Windows-only)
-- Context key management (`paperclip:isOneDriveWorkspace`)
+- Context key management (`paperclipped:isOneDriveWorkspace`)
 - Command registration and URI resolution
 - Glue between VS Code API and domain modules
 
@@ -243,7 +243,7 @@ Always use `psEscape()` for embedding paths in single-quoted strings and explici
 The extension uses a single VS Code context key:
 
 ```
-paperclip:isOneDriveWorkspace = true | false
+paperclipped:isOneDriveWorkspace = true | false
 ```
 
 This controls the visibility of the `Paperclipped` submenu in the explorer context menu. It's refreshed on activation and whenever workspace folders change.
@@ -255,7 +255,7 @@ This controls the visibility of the `Paperclipped` submenu in the explorer conte
 1. **Define the command** in `package.json` under `contributes.commands`:
    ```json
    {
-     "command": "paperclip.myCommand",
+     "command": "paperclipped.myCommand",
      "title": "My Command",
      "category": "Paperclipped",
      "icon": {
@@ -265,10 +265,10 @@ This controls the visibility of the `Paperclipped` submenu in the explorer conte
    }
    ```
 
-2. **Add menu entry** in `package.json` under `contributes.menus["paperclip.menu"]`:
+2. **Add menu entry** in `package.json` under `contributes.menus["paperclipped.menu"]`:
    ```json
    {
-     "command": "paperclip.myCommand",
+     "command": "paperclipped.myCommand",
      "when": "<optional context expression>",
      "group": "2_openApp"
    }
@@ -285,7 +285,7 @@ This controls the visibility of the `Paperclipped` submenu in the explorer conte
 4. **Register in `extension.ts`**:
    ```typescript
    vscode.commands.registerCommand(
-     "paperclip.myCommand",
+     "paperclipped.myCommand",
      async (uri?: vscode.Uri) => {
        const filePath = resolveFilePath(uri);
        if (filePath) {
@@ -315,7 +315,7 @@ To add support for a new Office file type in the preview and context menus:
 
 3. **Add to `OFFICE_MAP`** in `preview.ts`:
    ```typescript
-   ".myext": { name: "MyApp", color: "#hexcolor", letter: "M", commandId: "paperclip.openInMyApp", webAction: "view" },
+   ".myext": { name: "MyApp", color: "#hexcolor", letter: "M", commandId: "paperclipped.openInMyApp", webAction: "view" },
    ```
 
 ---

@@ -5,6 +5,7 @@ import {
   discoverOneDriveRoots,
 } from "./onedrive";
 import { shareFile, openInOfficeApp, openOnWeb } from "./sharing";
+import { OfficePreviewProvider } from "./preview";
 
 export function activate(context: vscode.ExtensionContext): void {
   if (process.platform !== "win32") {
@@ -20,11 +21,14 @@ export function activate(context: vscode.ExtensionContext): void {
     )
   );
 
+  // ── Custom editor ────────────────────────────────────────
+  context.subscriptions.push(OfficePreviewProvider.register(context));
+
   // ── Commands ──────────────────────────────────────────────
 
   context.subscriptions.push(
     vscode.commands.registerCommand(
-      "onedrive-sharing.share",
+      "paperclipped.share",
       async (uri?: vscode.Uri) => {
         const filePath = resolveFilePath(uri);
         if (!filePath) {
@@ -41,7 +45,7 @@ export function activate(context: vscode.ExtensionContext): void {
     ),
 
     vscode.commands.registerCommand(
-      "onedrive-sharing.openInWord",
+      "paperclipped.openInWord",
       async (uri?: vscode.Uri) => {
         const filePath = resolveFilePath(uri);
         if (filePath) {
@@ -51,7 +55,7 @@ export function activate(context: vscode.ExtensionContext): void {
     ),
 
     vscode.commands.registerCommand(
-      "onedrive-sharing.openInExcel",
+      "paperclipped.openInExcel",
       async (uri?: vscode.Uri) => {
         const filePath = resolveFilePath(uri);
         if (filePath) {
@@ -61,7 +65,7 @@ export function activate(context: vscode.ExtensionContext): void {
     ),
 
     vscode.commands.registerCommand(
-      "onedrive-sharing.openInPowerPoint",
+      "paperclipped.openInPowerPoint",
       async (uri?: vscode.Uri) => {
         const filePath = resolveFilePath(uri);
         if (filePath) {
@@ -71,7 +75,7 @@ export function activate(context: vscode.ExtensionContext): void {
     ),
 
     vscode.commands.registerCommand(
-      "onedrive-sharing.openOnWeb",
+      "paperclipped.openOnWeb",
       async (uri?: vscode.Uri) => {
         const filePath = resolveFilePath(uri);
         if (!filePath) {
@@ -92,7 +96,7 @@ export function activate(context: vscode.ExtensionContext): void {
   const roots = discoverOneDriveRoots();
   if (roots.length > 0) {
     console.log(
-      `[OneDrive Sharing] Detected ${roots.length} root(s): ${roots.map((r) => r.localPath).join(", ")}`
+      `[Paperclipped] Detected ${roots.length} root(s): ${roots.map((r) => r.localPath).join(", ")}`
     );
   }
 }
@@ -105,7 +109,7 @@ function refreshOneDriveContext(): void {
   const active = isWorkspaceInOneDrive(vscode.workspace.workspaceFolders);
   vscode.commands.executeCommand(
     "setContext",
-    "onedrive:isOneDriveWorkspace",
+    "paperclipped:isOneDriveWorkspace",
     active
   );
 }
@@ -114,10 +118,33 @@ function resolveFilePath(uri?: vscode.Uri): string | undefined {
   if (uri) {
     return uri.fsPath;
   }
+
+  // Check active text editor
   const editor = vscode.window.activeTextEditor;
   if (editor) {
     return editor.document.uri.fsPath;
   }
+
+  // Check active tab (works for custom editors, non-text files, and when
+  // focus is on the sidebar/panel)
+  const activeTab = vscode.window.tabGroups.activeTabGroup.activeTab;
+  if (activeTab?.input) {
+    const input = activeTab.input as any;
+    // TabInputText, TabInputCustom, TabInputNotebook all have .uri
+    if (input.uri?.fsPath) {
+      return input.uri.fsPath;
+    }
+    // TabInputTextDiff has .modified
+    if (input.modified?.fsPath) {
+      return input.modified.fsPath;
+    }
+  }
+
+  // Last resort: check the first visible text editor
+  if (vscode.window.visibleTextEditors.length > 0) {
+    return vscode.window.visibleTextEditors[0].document.uri.fsPath;
+  }
+
   vscode.window.showWarningMessage("No file selected.");
   return undefined;
 }
