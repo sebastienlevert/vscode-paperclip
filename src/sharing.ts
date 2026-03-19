@@ -271,17 +271,53 @@ export async function openFolderOnWeb(filePath: string): Promise<void> {
 // ---------------------------------------------------------------------------
 
 /**
- * Open the version history page for a OneDrive-synced file in the browser.
+ * Open the native OneDrive version history dialog for a file.
+ * Uses the shell "Version history" verb. Falls back to the web URL.
  */
 export async function openVersionHistory(filePath: string): Promise<void> {
+  const folderPath = psEscape(path.dirname(filePath));
+  const fileName = psEscape(path.basename(filePath));
+
+  const script = `
+    $shell = New-Object -ComObject Shell.Application
+    $folder = $shell.NameSpace('${folderPath}')
+    if (-not $folder) { Write-Output 'FOLDER_NOT_FOUND'; exit 1 }
+    $item = $folder.ParseName('${fileName}')
+    if (-not $item) { Write-Output 'FILE_NOT_FOUND'; exit 1 }
+
+    $historyVerb = $null
+    foreach ($v in $item.Verbs()) {
+      if ($v.Name -match '[Vv]ersion\s*[Hh]istory') {
+        $historyVerb = $v
+        break
+      }
+    }
+
+    if ($historyVerb) {
+      $historyVerb.DoIt()
+      Write-Output 'OK'
+    } else {
+      Write-Output 'NO_VERB'
+    }
+  `;
+
+  try {
+    const result = (await runPowerShell(script)).trim();
+    if (result === "OK") {
+      return;
+    }
+  } catch {
+    // Fall through to web fallback
+  }
+
+  // Fallback: open version history on the web
   const webUrl = await resolveWebUrl(filePath);
   if (webUrl) {
-    // Replace ?web=1 with the version history action URL
     const historyUrl = webUrl.replace(/\?web=1$/, "?action=versionhistory");
     await vscode.env.openExternal(vscode.Uri.parse(historyUrl));
   } else {
     vscode.window.showWarningMessage(
-      "Could not determine the web URL for this file. Make sure OneDrive is syncing this folder."
+      "Could not open version history for this file."
     );
   }
 }
