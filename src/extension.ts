@@ -7,6 +7,7 @@ import {
 } from "./onedrive";
 import { shareFile, openInOfficeApp, openOnWeb, openFolderOnWeb, openVersionHistory } from "./sharing";
 import { OfficePreviewProvider } from "./preview";
+import { SyncStatusDecorationProvider } from "./sync-decorations";
 
 export function activate(context: vscode.ExtensionContext): void {
   if (process.platform !== "win32") {
@@ -24,6 +25,9 @@ export function activate(context: vscode.ExtensionContext): void {
 
   // ── Custom editor ────────────────────────────────────────
   context.subscriptions.push(OfficePreviewProvider.register(context));
+
+  // ── Sync status decorations ────────────────────────────
+  SyncStatusDecorationProvider.register(context);
 
   // ── Commands ──────────────────────────────────────────────
 
