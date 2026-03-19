@@ -2,7 +2,7 @@
   "name": "paperclipped",
   "displayName": "Paperclipped",
   "description": "A better integration for VS Code and productivity documents — share files, open in Word, Excel, PowerPoint, preview Office docs, and open on the web",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "publisher": "sebastienlevert",
   "license": "MIT",
   "icon": "paperclipped.png",
