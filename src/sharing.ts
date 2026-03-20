@@ -272,7 +272,7 @@ export async function openVersionHistory(filePath: string): Promise<void> {
 
     $historyVerb = $null
     foreach ($v in $item.Verbs()) {
-      if ($v.Name -match '[Vv]ersion\s*[Hh]istory') {
+      if ($v.Name -eq '&Version history') {
         $historyVerb = $v
         break
       }
