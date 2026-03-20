@@ -183,8 +183,8 @@ export function activate(context: vscode.ExtensionContext): void {
         }
 
         const items: vscode.QuickPickItem[] = [
-          { label: "$(folder) Open Folder", description: root.localPath },
-          { label: "$(globe) Open Folder on Web", description: "Open in browser" },
+          { label: "$(folder) Open OneDrive Folder", description: root.localPath },
+          { label: "$(globe) Open OneDrive Folder on the Web", description: "Open in browser" },
         ];
 
         const pick = await vscode.window.showQuickPick(items, {
@@ -195,7 +195,7 @@ export function activate(context: vscode.ExtensionContext): void {
           return;
         }
 
-        if (pick.label.includes("Open Folder on Web")) {
+        if (pick.label.includes("on the Web")) {
           if (root.webEndpoint) {
             // Open the root Documents folder on the web
             await vscode.env.openExternal(
