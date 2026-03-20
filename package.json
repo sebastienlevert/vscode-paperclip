@@ -108,6 +108,10 @@
       {
         "id": "paperclipped.menu",
         "label": "Paperclipped"
+      },
+      {
+        "id": "paperclipped.folderMenu",
+        "label": "Paperclipped"
       }
     ],
     "menus": {
@@ -118,7 +122,7 @@
           "group": "navigation@100"
         },
         {
-          "command": "paperclipped.openFolderOnWeb",
+          "submenu": "paperclipped.folderMenu",
           "when": "paperclipped:isOneDriveWorkspace && explorerResourceIsFolder",
           "group": "navigation@100"
         }
@@ -170,6 +174,12 @@
           "command": "paperclipped.exportToWord",
           "when": "resourceExtname == .md",
           "group": "5_export"
+        }
+      ],
+      "paperclipped.folderMenu": [
+        {
+          "command": "paperclipped.openFolderOnWeb",
+          "group": "1_web"
         }
       ],
       "commandPalette": [
