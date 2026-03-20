@@ -1,3 +1,4 @@
+import * as path from "path";
 import * as vscode from "vscode";
 import {
   isWorkspaceInOneDrive,
@@ -167,21 +168,42 @@ export function activate(context: vscode.ExtensionContext): void {
     ),
 
     vscode.commands.registerCommand(
-      "paperclipped.openOneDriveRoot",
+      "paperclipped.oneDriveMenu",
       async () => {
         const filePath = getActiveFilePath();
-        if (filePath) {
-          const root = findOneDriveRoot(filePath);
-          if (root) {
-            const uri = vscode.Uri.file(root.localPath);
-            await vscode.commands.executeCommand("revealInExplorer", uri);
-            return;
-          }
+        const root = filePath
+          ? findOneDriveRoot(filePath)
+          : discoverOneDriveRoots()[0];
+        if (!root) {
+          return;
         }
-        // Fallback: open first discovered root
-        const roots = discoverOneDriveRoots();
-        if (roots.length > 0) {
-          const uri = vscode.Uri.file(roots[0].localPath);
+
+        const items: vscode.QuickPickItem[] = [
+          { label: "$(folder) Open Folder", description: root.localPath },
+          { label: "$(globe) Open Folder on Web", description: "Open in browser" },
+        ];
+
+        const pick = await vscode.window.showQuickPick(items, {
+          placeHolder: path.basename(root.localPath),
+        });
+
+        if (!pick) {
+          return;
+        }
+
+        if (pick.label.includes("Open Folder on Web")) {
+          if (root.webEndpoint) {
+            // Open the root Documents folder on the web
+            await vscode.env.openExternal(
+              vscode.Uri.parse(root.webEndpoint + "Documents")
+            );
+          } else {
+            vscode.window.showWarningMessage(
+              "Could not determine the web URL for this OneDrive."
+            );
+          }
+        } else {
+          const uri = vscode.Uri.file(root.localPath);
           await vscode.commands.executeCommand("revealInExplorer", uri);
         }
       }
@@ -193,14 +215,15 @@ export function activate(context: vscode.ExtensionContext): void {
     vscode.StatusBarAlignment.Right,
     50
   );
-  statusBarItem.command = "paperclipped.openOneDriveRoot";
+  statusBarItem.command = "paperclipped.oneDriveMenu";
   context.subscriptions.push(statusBarItem);
 
   const updateStatusBar = () => {
     const filePath = getActiveFilePath();
     if (filePath && isInOneDrive(filePath)) {
       const root = findOneDriveRoot(filePath);
-      statusBarItem.text = "$(cloud) OneDrive";
+      const label = root ? path.basename(root.localPath) : "OneDrive";
+      statusBarItem.text = `$(cloud) ${label}`;
       statusBarItem.tooltip = root
         ? `Paperclipped — ${root.localPath}`
         : "Paperclipped — OneDrive";
