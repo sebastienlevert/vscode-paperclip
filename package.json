@@ -107,11 +107,13 @@
     "submenus": [
       {
         "id": "paperclipped.menu",
-        "label": "Paperclipped"
+        "label": "Paperclipped",
+        "icon": "$(cloud)"
       },
       {
         "id": "paperclipped.folderMenu",
-        "label": "Paperclipped"
+        "label": "Paperclipped",
+        "icon": "$(cloud)"
       }
     ],
     "menus": {
